@@ -1,12 +1,13 @@
 import React from 'react'
 import './Header.css'
 
-function Header() {
+function Header({ onSignUpClick }) {
   return (
     <header className="site-header">
+      
 
       <nav className="navigation-bar" aria-label="Primary navigation">
-        <div className="top-bar">
+       <div className="top-bar">
         <div className="brand">abhibus</div>
       </div>
         <ul className="nav-items">
@@ -23,7 +24,7 @@ function Header() {
             <span>Need Help?</span>
           </li>
         </ul>
-        <button className="login-btn">Login/SignUp</button>
+        <button className="login-btn" onClick={onSignUpClick}>Login/SignUp</button>
       </nav>
     </header>
   )
