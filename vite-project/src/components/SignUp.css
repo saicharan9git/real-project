@@ -1,79 +1,244 @@
-.signup-page {
-  min-height: 100vh;
-  background: #f4f5f6;
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  z-index: 1000;
 }
 
-.back-btn {
+.dialog-card {
+  width: min(95vw, 900px);
+  max-width: 920px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fff;
+  position: relative;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.22);
+}
+
+.dialog-close {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  background: none;
+  top: 24px;
+  right: 24px;
+  background: transparent;
   border: none;
-  font-size: 18px;
+  font-size: 28px;
   cursor: pointer;
   color: #333;
 }
 
-.signup-container {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 40px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+.dialog-left {
+  background: linear-gradient(180deg, #fa5a5a 0%, #d62424 100%);
+  color: #fff;
+  padding: 42px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-h2 {
-  margin-top: 0;
-  margin-bottom: 30px;
-  color: #333;
-  text-align: center;
-  font-size: 24px;
+.promo-badge {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 16px;
 }
 
-.form-group {
-  margin-bottom: 20px;
+.promo-offer {
+  font-size: 3.3rem;
+  line-height: 1;
+  font-weight: 800;
+  margin-bottom: 10px;
 }
 
-label {
+.promo-text {
+  font-size: 1rem;
+  opacity: 0.92;
+  margin-bottom: 22px;
+}
+
+.promo-code {
+  background: rgba(255, 255, 255, 0.16);
+  padding: 16px 18px;
+  border-radius: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.95rem;
+}
+
+.promo-image {
+  margin-top: 32px;
+  position: relative;
+  min-height: 240px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.promo-bus {
+  width: 160px;
+  height: 110px;
+  border-radius: 24px 24px 18px 18px;
+  background: linear-gradient(180deg, #fff 0%, #f8f8f8 100%);
+  position: relative;
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.18);
+}
+
+.promo-bus::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #e02d2a;
+}
+
+.dialog-right {
+  padding: 42px 36px;
+  background: #fff;
+  color: #222;
+}
+
+.dialog-right h2 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.dialog-subtitle {
+  margin: 0 0 22px;
+  color: #5c5c5c;
+  font-size: 0.98rem;
+}
+
+.dialog-form {
+  display: grid;
+  gap: 16px;
+}
+
+.dialog-form label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: 600;
-  color: #555;
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 8px;
 }
 
-input {
+.dialog-form input {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-  box-sizing: border-box;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #d8d8d8;
+  font-size: 1rem;
+  color: #222;
 }
 
-input:focus {
+.dialog-form input:focus {
   outline: none;
   border-color: #e02d2a;
 }
 
-.submit-btn {
+.dialog-submit {
   width: 100%;
-  padding: 14px;
-  background: #e02d2a;
-  color: #ffffff;
+  padding: 14px 18px;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: 12px;
+  background: #e02d2a;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease;
+  margin-top: 8px;
 }
 
-.submit-btn:hover {
-  background: #c02525;
+.dialog-divider {
+  text-align: center;
+  margin: 28px 0 18px;
+  color: #7a7a7a;
+  font-size: 0.92rem;
+  position: relative;
+}
+
+.dialog-divider::before,
+.dialog-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 38%;
+  height: 1px;
+  background: #e2e2e2;
+}
+
+.dialog-divider::before {
+  left: 0;
+}
+
+.dialog-divider::after {
+  right: 0;
+}
+
+.google-btn {
+  width: 100%;
+  padding: 12px 18px;
+  border: 1px solid #dadada;
+  border-radius: 12px;
+  background: #fff;
+  color: #444;
+  font-size: 0.98rem;
+  cursor: pointer;
+}
+
+.dialog-terms {
+  margin-top: 18px;
+  color: #777;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.dialog-terms a {
+  color: #1f69ff;
+  text-decoration: none;
+}
+
+.dialog-terms a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 860px) {
+  .dialog-card {
+    grid-template-columns: 1fr;
+  }
+
+  .dialog-left,
+  .dialog-right {
+    padding: 28px;
+  }
+
+  .dialog-close {
+    top: 18px;
+    right: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .dialog-card {
+    width: 100%;
+    margin: 16px;
+  }
+
+  .dialog-left,
+  .dialog-right {
+    padding: 20px;
+  }
+
+  .promo-offer {
+    font-size: 2.4rem;
+  }
 }

@@ -7,17 +7,13 @@ function App() {
   const [showSignUp, setShowSignUp] = useState(false)
 
   const handleSignUpClick = () => {
-    console.log('Sign up button clicked')
     setShowSignUp(true)
-  }
-
-  if (showSignUp) {
-    return <SignUp onClose={() => setShowSignUp(false)} />
   }
 
   return (
     <div className="app-shell">
       <Header onSignUpClick={handleSignUpClick} />
+      {showSignUp && <SignUp onClose={() => setShowSignUp(false)} />}
     </div>
   )
 }
