@@ -2,81 +2,65 @@ import React, { useState } from 'react'
 import './SignUp.css'
 
 function SignUp({ onClose }) {
-  console.log('SignUp component rendered')
-
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  })
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
+  const [mobile, setMobile] = useState('')
+  const [referral, setReferral] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Handle sign-up logic here
-    console.log('Sign-up data:', formData)
+    console.log('Login request:', { mobile, referral })
     onClose()
   }
 
   return (
-    <div className="signup-page">
-      <button className="back-btn" onClick={onClose}>← Back</button>
-      <div className="signup-container">
-        <h2>Sign Up</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Full Name</label>
+    <div className="dialog-overlay" onClick={onClose}>
+      <div className="dialog-card" onClick={(e) => e.stopPropagation()}>
+        <button className="dialog-close" onClick={onClose}>
+          ×
+        </button>
+
+        <div className="dialog-left">
+          <div className="promo-badge">Login & Get</div>
+          <div className="promo-offer">₹500 Off*</div>
+          <div className="promo-text">On 1st Booking</div>
+          <div className="promo-code">Code : ABHIFIRST</div>
+          <div className="promo-image">
+            <div className="promo-bus" />
+          </div>
+        </div>
+
+        <div className="dialog-right">
+          <h2>Login to AbhiBus</h2>
+          <p className="dialog-subtitle">Enter Mobile Number to Continue</p>
+          <form onSubmit={handleSubmit} className="dialog-form">
+            <label htmlFor="mobile">Mobile Number</label>
             <input
+              id="mobile"
+              type="tel"
+              placeholder="+91"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              required
+            />
+
+            <label htmlFor="referral">Have a referral code?</label>
+            <input
+              id="referral"
               type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
+              placeholder="Enter Referral Code if Available"
+              value={referral}
+              onChange={(e) => setReferral(e.target.value)}
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <button type="submit" className="submit-btn">Sign Up</button>
-        </form>
+
+            <button type="submit" className="dialog-submit">Login</button>
+          </form>
+
+          <div className="dialog-divider">Or Continue With</div>
+          <button className="google-btn">Sign in with google</button>
+          <p className="dialog-terms">
+            By logging in, I understand & agree to AbhiBus{' '}
+            <a href="#">terms of use</a> & <a href="#">privacy policy</a>
+          </p>
+        </div>
       </div>
     </div>
   )
